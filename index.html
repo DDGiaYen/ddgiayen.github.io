@@ -96,6 +96,27 @@ dialog img{max-width:94vw;max-height:90vh;border-radius:12px}
  .hero{padding:48px 0}section{padding:60px 0}.dark{border-radius:24px;margin:0 8px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}h1{animation:none}.btn,.shot{transition:none}}
+
+.slider{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:20px 24px 24px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.tabs button{border:1px solid var(--line);background:var(--bg);color:var(--muted);font:inherit;font-weight:700;font-size:.9rem;padding:8px 18px;border-radius:99px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--deep);border-color:var(--deep);color:#fff}
+.viewport{overflow:hidden;border-radius:var(--r)}
+.track{display:flex;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.slide{flex:0 0 100%;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;align-items:center;padding:6px}
+.slide h3{font-size:1.7rem;line-height:1.2;margin:0 0 6px;letter-spacing:-.02em}
+.where{color:var(--brand);font-weight:700;margin:0 0 12px}
+.slide ul{padding-left:20px;margin:0;color:var(--muted)}.slide li{margin-bottom:8px}
+.main img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%;border-radius:var(--r);cursor:zoom-in}
+.thumbs{display:flex;gap:10px;margin-top:10px}
+.thumbs button{border:2px solid transparent;padding:0;background:none;border-radius:14px;cursor:pointer;opacity:.6;overflow:hidden;width:88px}
+.thumbs button.on{border-color:var(--orange);opacity:1}
+.thumbs img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.ctrl{display:flex;align-items:center;justify-content:center;gap:18px;margin-top:20px;font-weight:700;color:var(--muted)}
+.arrow{width:46px;height:46px;border-radius:50%;border:2px solid var(--deep);background:#fff;color:var(--deep);font-size:1.2rem;cursor:pointer}
+.arrow:hover{background:var(--deep);color:#fff}
+@media(max-width:800px){.slide{grid-template-columns:1fr}.slider{padding:14px}}
+@media(prefers-reduced-motion:reduce){.track{transition:none}}
 </style>
 </head>
 <body>
@@ -164,12 +185,46 @@ dialog img{max-width:94vw;max-height:90vh;border-radius:12px}
 
 <section id="hoat-dong" style="padding-top:0"><div class="wrap">
   <h2>Ngoài giờ code</h2>
-  <p class="intro">Âm nhạc và hoạt động cộng đồng dạy tôi cách làm việc nhóm, chia việc và giữ tiến độ.</p>
-  <div class="life">
-    <figure class="a"><img src="images/hoat-dong-2.jpg" alt="Các thành viên CLB Nhạc cụ dân tộc FTC" loading="lazy"><figcaption>CLB Nhạc cụ dân tộc FTC, Đại học FPT Cần Thơ (01/2023 - 08/2023)</figcaption></figure>
-    <figure class="b"><img src="images/hoat-dong-1.jpg" alt="Buổi biểu diễn của CLB" loading="lazy"><figcaption>Biểu diễn cùng CLB</figcaption></figure>
-    <figure class="c"><img src="images/hoat-dong-3.jpg" alt="Đàn tranh tại buổi tập" loading="lazy"><figcaption>Chuẩn bị tiết mục và giữ tiến độ luyện tập</figcaption></figure>
-    <figure class="d"><img src="images/hoat-dong-4.jpg" alt="Hoạt động vui chơi cùng các em nhỏ" loading="lazy"><figcaption>Cội Nguồn Yêu Thương (01/2024 - 02/2024): khởi xướng và tổ chức hoạt động cho các em nhỏ có hoàn cảnh đặc biệt</figcaption></figure>
+  <p class="intro">Âm nhạc và hoạt động cộng đồng dạy tôi cách làm việc nhóm, chia việc và giữ tiến độ. Chọn một hoạt động hoặc dùng mũi tên để chuyển.</p>
+  <div class="slider">
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true">CLB Nhạc cụ dân tộc FTC</button>
+      <button role="tab" aria-selected="false">Cội Nguồn Yêu Thương</button>
+    </div>
+    <div class="viewport"><div class="track">
+      <article class="slide">
+        <div class="info">
+          <span class="tag">01/2023 - 08/2023</span>
+          <h3>CLB Nhạc cụ dân tộc FTC</h3>
+          <p class="where">Đại học FPT Cần Thơ | Thành viên</p>
+          <ul><li>Tham gia luyện tập, biểu diễn và hỗ trợ tổ chức các chương trình, sự kiện của CLB.</li>
+          <li>Phối hợp với các thành viên để phân công công việc, chuẩn bị tiết mục và đảm bảo tiến độ hoạt động.</li></ul>
+        </div>
+        <div class="gal">
+          <div class="main"><img src="images/hoat-dong-2.jpg" alt="Các thành viên CLB Nhạc cụ dân tộc FTC"></div>
+          <div class="thumbs">
+            <button class="on"><img src="images/hoat-dong-2.jpg" alt="Ảnh tập thể CLB"></button>
+            <button><img src="images/hoat-dong-1.jpg" alt="Buổi biểu diễn của CLB"></button>
+            <button><img src="images/hoat-dong-3.jpg" alt="Đàn tranh tại buổi tập"></button>
+          </div>
+        </div>
+      </article>
+      <article class="slide">
+        <div class="info">
+          <span class="tag">01/2024 - 02/2024</span>
+          <h3>Cội Nguồn Yêu Thương</h3>
+          <p class="where">Dự án tình nguyện | Người khởi xướng và Tổ chức</p>
+          <ul><li>Khởi xướng và lên kế hoạch dự án tình nguyện, cùng team tổ chức hoạt động vui chơi và hỗ trợ các em nhỏ có hoàn cảnh đặc biệt.</li>
+          <li>Phân công công việc, phối hợp thành viên và xử lý các vấn đề phát sinh trong quá trình triển khai.</li></ul>
+        </div>
+        <div class="gal"><div class="main"><img src="images/hoat-dong-4.jpg" alt="Hoạt động vui chơi cùng các em nhỏ"></div></div>
+      </article>
+    </div></div>
+    <div class="ctrl">
+      <button class="arrow" id="prev" aria-label="Hoạt động trước">&#8592;</button>
+      <span id="count">1 / 2</span>
+      <button class="arrow" id="next" aria-label="Hoạt động tiếp theo">&#8594;</button>
+    </div>
   </div>
 </div></section>
 
@@ -206,6 +261,18 @@ dialog img{max-width:94vw;max-height:90vh;border-radius:12px}
 const d=document.getElementById('zoom'),big=d.querySelector('img');
 document.querySelectorAll('.shot img,.life img').forEach(i=>i.addEventListener('click',()=>{big.src=i.src;big.alt=i.alt;d.showModal()}));
 d.addEventListener('click',()=>d.close());
+
+const tr=document.querySelector('.track'),tabs=[...document.querySelectorAll('.tabs button')],cnt=document.getElementById('count');
+let cur=0;
+function go(n){cur=(n+tabs.length)%tabs.length;tr.style.transform='translateX(-'+cur*100+'%)';tabs.forEach((t,i)=>t.setAttribute('aria-selected',i===cur));cnt.textContent=(cur+1)+' / '+tabs.length}
+tabs.forEach((t,i)=>t.addEventListener('click',()=>go(i)));
+document.getElementById('prev').addEventListener('click',()=>go(cur-1));
+document.getElementById('next').addEventListener('click',()=>go(cur+1));
+let sx=null;const vp=document.querySelector('.viewport');
+vp.addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:true});
+vp.addEventListener('touchend',e=>{if(sx===null)return;const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1));sx=null});
+document.querySelectorAll('.thumbs button').forEach(b=>b.addEventListener('click',()=>{const g=b.closest('.gal'),m=g.querySelector('.main img'),i=b.querySelector('img');m.src=i.src;m.alt=i.alt;g.querySelectorAll('.thumbs button').forEach(x=>x.classList.toggle('on',x===b))}));
+document.querySelectorAll('.main img').forEach(i=>i.addEventListener('click',()=>{big.src=i.src;big.alt=i.alt;d.showModal()}));
 </script>
 </body>
 </html>
