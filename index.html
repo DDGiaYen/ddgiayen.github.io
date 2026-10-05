@@ -1,255 +1,676 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Đinh Danh Gia Yến | Portfolio</title>
-<meta name="description" content="Portfolio của Đinh Danh Gia Yến - sinh viên Kỹ thuật Phần mềm FPT University, thực hành phân tích yêu cầu, lập trình Backend/Frontend và kiểm thử phần mềm.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#f4f7f9;--ink:#0a1a21;--muted:#56686f;--line:#dbe4e9;--brand:#0a86a3;--deep:#071c25;--deep2:#0d2b38;--orange:#ff6b2c;--card:#fff;--r:22px;--soft:#a3bcc5}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans",system-ui,Arial,sans-serif;line-height:1.7}
-img{max-width:100%;display:block}
-a{color:var(--brand)}
-a:focus-visible,button:focus-visible,.track:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
-.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
-nav{position:sticky;top:12px;z-index:9;margin:12px auto 0;max-width:1060px;width:calc(100% - 24px);background:rgba(255,255,255,.85);backdrop-filter:blur(12px);border:1px solid var(--line);border-radius:99px;padding:8px 22px;display:flex;align-items:center;gap:22px;overflow-x:auto;box-shadow:0 6px 24px rgba(10,26,33,.06)}
-nav b{margin-right:auto;white-space:nowrap}
-nav a{color:var(--muted);text-decoration:none;font-size:.9rem;white-space:nowrap;font-weight:500}
-nav a:hover{color:var(--brand)}
-.btn{display:inline-block;padding:13px 26px;border-radius:99px;font-weight:700;text-decoration:none;border:2px solid var(--deep);transition:transform .15s,box-shadow .15s}
-.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,107,44,.25)}
-.btn.main{background:var(--orange);border-color:var(--orange);color:#fff}
-.btn.ghost{color:var(--deep)}
-.hero{padding:72px 0 88px;background:radial-gradient(60% 50% at 85% 20%,rgba(10,134,163,.14),transparent 70%)}
-.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:56px;align-items:center}
-h1{font-size:clamp(2.8rem,8vw,5.6rem);line-height:.98;margin:0 0 20px;font-weight:800;letter-spacing:-.04em;animation:up .7s both}
-@keyframes up{from{opacity:0;transform:translateY(24px)}}
-.role{display:inline-block;font-size:.95rem;font-weight:700;color:var(--brand);margin:0 0 18px;background:rgba(10,134,163,.1);padding:4px 16px;border-radius:99px}
-.lead{max-width:52ch;color:var(--muted);margin:0 0 30px}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.chips{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:28px 0 0}
-.chips li{background:#fff;border:1px solid var(--line);padding:5px 16px;border-radius:99px;font-size:.88rem;font-weight:500}
-.portrait{justify-self:center;width:100%;max-width:380px;position:relative}
-.portrait::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);background:var(--orange);border-radius:190px 190px var(--r) var(--r)}
-.portrait img{position:relative;aspect-ratio:3/4;object-fit:cover;width:100%;border-radius:190px 190px var(--r) var(--r)}
-section{padding:88px 0}
-.eyebrow{display:block;font-size:.8rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
-h2{font-size:clamp(1.9rem,4.5vw,2.8rem);line-height:1.1;margin:0 0 14px;letter-spacing:-.03em;font-weight:800}
-.intro{max-width:60ch;color:var(--muted);margin:0 0 36px}
-.dark{background:var(--deep);color:#e4eef1;border-radius:36px;margin:0 12px}
-.dark h2{color:#fff}.dark .intro{color:var(--soft)}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:0 0 40px}
-.fact{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:18px 22px;border-radius:var(--r)}
-.fact b{display:block;color:#fff}
-.fact span{font-size:.92rem;color:var(--soft)}
 
-/* Slider */
-.slider{position:relative}
-.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border-radius:var(--r)}
-.track::-webkit-scrollbar{display:none}
-.slide{flex:0 0 100%;scroll-snap-align:start;min-width:0}
-.ctrl{display:flex;align-items:center;gap:16px;margin-top:22px}
-.ctrl .dots{display:flex;gap:8px;flex:1;flex-wrap:wrap}
-.dot{width:10px;height:10px;border-radius:99px;border:0;padding:0;cursor:pointer;background:rgba(127,160,172,.45);transition:width .25s,background .25s}
-.dot.on{width:30px;background:var(--orange)}
-.count{font-size:.9rem;font-weight:700;color:var(--soft);font-variant-numeric:tabular-nums}
-.nb{width:46px;height:46px;border-radius:50%;border:2px solid currentColor;background:transparent;color:inherit;font-size:1.2rem;cursor:pointer;transition:background .15s,color .15s,opacity .15s}
-.nb:hover:not(:disabled){background:var(--orange);border-color:var(--orange);color:#fff}
-.nb:disabled{opacity:.3;cursor:default}
+<html lang="vi"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1"> <title>Đinh Danh Gia Yến | Portfolio</title> <meta name="description" content="Portfolio của Đinh Danh Gia Yến - sinh viên Kỹ thuật Phần mềm FPT University, thực hành phân tích yêu cầu, lập trình Backend/Frontend và kiểm thử phần mềm.">
 
-/* Project slides */
-.proj{display:grid;grid-template-columns:1.7fr 1fr;gap:32px;align-items:center;background:var(--deep2);border:1px solid rgba(255,255,255,.08);border-radius:var(--r);padding:22px}
-.pic{border:0;padding:0;background:#fff;border-radius:16px;overflow:hidden;cursor:zoom-in;width:100%;box-shadow:0 18px 44px rgba(0,0,0,.35)}
-.pic img{width:100%;aspect-ratio:16/10;object-fit:contain;background:#fff}
-.proj .info{padding-right:10px}
-.tag{display:inline-block;background:var(--orange);color:#fff;font-size:.8rem;font-weight:700;padding:2px 14px;border-radius:99px;margin-bottom:14px}
-.proj h3{font-size:1.5rem;line-height:1.25;margin:0 0 10px;color:#fff;letter-spacing:-.02em}
-.proj p{margin:0;color:var(--soft)}
-.tags{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:36px 0 0}
-.tags li{border:1px solid #2f5b6a;padding:4px 16px;border-radius:99px;font-size:.88rem}
+<link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-/* Experience */
-.job{background:var(--card);border-radius:var(--r);padding:32px;max-width:780px;border:1px solid var(--line);border-left:6px solid var(--brand)}
-.job small{color:var(--muted)}
-.job h3{margin:2px 0 0;font-size:1.35rem}
-.job .sub{color:var(--brand);font-weight:700;margin:0 0 10px}
-.job ul{margin:0;padding-left:20px}.job li{margin-bottom:6px}
+<style> :root{ --bg:#f4f7f9; --ink:#0a1a21; --muted:#56686f; --line:#dbe4e9; --brand:#0a86a3; --deep:#071c25; --deep2:#0d2b38; --orange:#ff6b2c; --card:#fff; --r:22px; --soft:#a3bcc5 } *{box-sizing:border-box} html{ scroll-behavior:smooth; scroll-padding-top:80px } body{ margin:0; background:var(--bg); color:var(--ink); font-family:"Plus Jakarta Sans",system-ui,Arial,sans-serif; line-height:1.7 } img{ max-width:100%; display:block } a{ color:var(--brand) } a:focus-visible, button:focus-visible, .track:focus-visible{ outline:3px solid var(--orange); outline-offset:3px } .wrap{ max-width:1100px; margin:0 auto; padding:0 24px } /* Navigation */ nav{ position:sticky; top:12px; z-index:9; margin:12px auto 0; max-width:1060px; width:calc(100% - 24px); background:rgba(255,255,255,.85); backdrop-filter:blur(12px); border:1px solid var(--line); border-radius:99px; padding:8px 22px; display:flex; align-items:center; gap:22px; overflow-x:auto; box-shadow:0 6px 24px rgba(10,26,33,.06) } nav b{ margin-right:0; white-space:nowrap } nav a{ color:var(--muted); text-decoration:none; font-size:.9rem; white-space:nowrap; font-weight:500 } nav a:hover{ color:var(--brand) } /* Language switch */ .lang-switch{ display:flex; align-items:center; gap:4px; white-space:nowrap; margin-right:auto } .lang-switch button{ border:0; background:transparent; color:var(--muted); font:inherit; font-size:.82rem; font-weight:800; cursor:pointer; padding:5px 2px; transition:color .15s } .lang-switch button:hover{ color:var(--brand) } .lang-switch button.active{ color:var(--orange) } .lang-switch span{ color:var(--line); font-size:.8rem } /* Buttons */ .btn{ display:inline-block; padding:13px 26px; border-radius:99px; font-weight:700; text-decoration:none; border:2px solid var(--deep); transition:transform .15s,box-shadow .15s } .btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(255,107,44,.25) } .btn.main{ background:var(--orange); border-color:var(--orange); color:#fff } .btn.ghost{ color:var(--deep) } /* Hero */ .hero{ padding:72px 0 88px; background:radial-gradient( 60% 50% at 85% 20%, rgba(10,134,163,.14), transparent 70% ) } .hero .wrap{ display:grid; grid-template-columns:1.3fr 1fr; gap:56px; align-items:center } h1{ font-size:clamp(2.8rem,8vw,5.6rem); line-height:.98; margin:0 0 20px; font-weight:800; letter-spacing:-.04em; animation:up .7s both } @keyframes up{ from{ opacity:0; transform:translateY(24px) } } .role{ display:inline-block; font-size:.95rem; font-weight:700; color:var(--brand); margin:0 0 18px; background:rgba(10,134,163,.1); padding:4px 16px; border-radius:99px } .lead{ max-width:52ch; color:var(--muted); margin:0 0 30px } .btns{ display:flex; flex-wrap:wrap; gap:12px } .chips{ display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:28px 0 0 } .chips li{ background:#fff; border:1px solid var(--line); padding:5px 16px; border-radius:99px; font-size:.88rem; font-weight:500 } .portrait{ justify-self:center; width:100%; max-width:380px; position:relative } .portrait::before{ content:""; position:absolute; inset:0; transform:translate(16px,16px); background:var(--orange); border-radius:190px 190px var(--r) var(--r) } .portrait img{ position:relative; aspect-ratio:3/4; object-fit:cover; width:100%; border-radius:190px 190px var(--r) var(--r) } section{ padding:88px 0 } .eyebrow{ display:block; font-size:.8rem; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:var(--orange); margin-bottom:8px } h2{ font-size:clamp(1.9rem,4.5vw,2.8rem); line-height:1.1; margin:0 0 14px; letter-spacing:-.03em; font-weight:800 } .intro{ max-width:60ch; color:var(--muted); margin:0 0 36px } .dark{ background:var(--deep); color:#e4eef1; border-radius:36px; margin:0 12px } .dark h2{ color:#fff } .dark .intro{ color:var(--soft) } .facts{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:0 0 40px } .fact{ background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08); padding:18px 22px; border-radius:var(--r) } .fact b{ display:block; color:#fff } .fact span{ font-size:.92rem; color:var(--soft) } /* Slider */ .slider{ position:relative } .track{ display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -webkit-overflow-scrolling:touch; border-radius:var(--r) } .track::-webkit-scrollbar{ display:none } .slide{ flex:0 0 100%; scroll-snap-align:start; min-width:0 } .ctrl{ display:flex; align-items:center; gap:16px; margin-top:22px } .ctrl .dots{ display:flex; gap:8px; flex:1; flex-wrap:wrap } .dot{ width:10px; height:10px; border-radius:99px; border:0; padding:0; cursor:pointer; background:rgba(127,160,172,.45); transition:width .25s,background .25s } .dot.on{ width:30px; background:var(--orange) } .count{ font-size:.9rem; font-weight:700; color:var(--soft); font-variant-numeric:tabular-nums } .nb{ width:46px; height:46px; border-radius:50%; border:2px solid currentColor; background:transparent; color:inherit; font-size:1.2rem; cursor:pointer; transition:background .15s,color .15s,opacity .15s } .nb:hover:not(:disabled){ background:var(--orange); border-color:var(--orange); color:#fff } .nb:disabled{ opacity:.3; cursor:default } /* Project slides */ .proj{ display:grid; grid-template-columns:1.7fr 1fr; gap:32px; align-items:center; background:var(--deep2); border:1px solid rgba(255,255,255,.08); border-radius:var(--r); padding:22px } .pic{ border:0; padding:0; background:#fff; border-radius:16px; overflow:hidden; cursor:zoom-in; width:100%; box-shadow:0 18px 44px rgba(0,0,0,.35) } .pic img{ width:100%; aspect-ratio:16/10; object-fit:contain; background:#fff } .proj .info{ padding-right:10px } .tag{ display:inline-block; background:var(--orange); color:#fff; font-size:.8rem; font-weight:700; padding:2px 14px; border-radius:99px; margin-bottom:14px } .proj h3{ font-size:1.5rem; line-height:1.25; margin:0 0 10px; color:#fff; letter-spacing:-.02em } .proj p{ margin:0; color:var(--soft) } .tags{ display:flex; flex-wrap:wrap; gap:8px; list-style:none; padding:0; margin:36px 0 0 } .tags li{ border:1px solid #2f5b6a; padding:4px 16px; border-radius:99px; font-size:.88rem } /* Experience */ .job{ background:var(--card); border-radius:var(--r); padding:32px; max-width:780px; border:1px solid var(--line); border-left:6px solid var(--brand) } .job small{ color:var(--muted) } .job h3{ margin:2px 0 0; font-size:1.35rem } .job .sub{ color:var(--brand); font-weight:700; margin:0 0 10px } .job ul{ margin:0; padding-left:20px } .job li{ margin-bottom:6px } /* Activity slides */ .life .slide{ flex-basis:calc(50% - 10px); background:var(--card); border:1px solid var(--line); border-radius:var(--r); overflow:hidden; margin:0 } .life .slide img{ width:100%; aspect-ratio:4/3; object-fit:cover; object-position:center 30%; cursor:zoom-in } .life figcaption{ padding:16px 20px 20px; font-size:.92rem; color:var(--muted) } .life .count{ color:var(--muted) } .life .nb{ color:var(--deep) } /* Skills */ .bento{ display:grid; grid-template-columns:repeat(6,1fr); gap:16px } .card{ background:var(--card); border-radius:var(--r); padding:26px; border:1px solid var(--line); grid-column:span 2; transition:transform .2s,box-shadow .2s } .card:hover{ transform:translateY(-3px); box-shadow:0 14px 30px rgba(10,26,33,.08) } .card.w{ grid-column:span 3 } .card h3{ margin:0 0 8px; font-size:1.05rem; color:var(--brand) } .card p{ margin:0; color:var(--muted); font-size:.95rem } .card.hl{ background:var(--brand); border-color:var(--brand) } .card.hl h3, .card.hl p{ color:#fff } .edu{ display:flex; flex-wrap:wrap; gap:6px 32px; margin-top:32px; color:var(--muted) } .edu b{ color:var(--ink) } /* Contact */ .contact{ text-align:center; padding:96px 0; background:linear-gradient(160deg,var(--deep),#0b3340) } .contact p{ max-width:52ch; margin:0 auto 28px; color:var(--soft) } footer{ text-align:center; color:var(--muted); padding:0 0 36px; font-size:.85rem } /* Image dialog */ dialog{ border:0; padding:0; background:none; max-width:94vw; max-height:94vh } dialog::backdrop{ background:rgba(0,0,0,.82) } dialog img{ max-width:94vw; max-height:90vh; border-radius:12px } /* Responsive */ @media(max-width:800px){ nav{ gap:16px; padding:8px 16px } .hero .wrap, .proj, .facts{ grid-template-columns:1fr } .proj{ padding:14px; gap:18px } .proj .info{ padding:0 6px 8px } .life .slide{ flex-basis:86% } .bento{ grid-template-columns:1fr } .card, .card.w{ grid-column:auto } .hero{ padding:48px 0 } section{ padding:60px 0 } .dark{ border-radius:24px; margin:0 8px } .nb{ width:40px; height:40px } .lang-switch{ margin-right:auto } } @media(prefers-reduced-motion:reduce){ html{ scroll-behavior:auto } h1{ animation:none } .btn, .card, .dot{ transition:none } } </style>
 
-/* Activity slides */
-.life .slide{flex-basis:calc(50% - 10px);background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;margin:0}
-.life .slide img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:center 30%;cursor:zoom-in}
-.life figcaption{padding:16px 20px 20px;font-size:.92rem;color:var(--muted)}
-.life .count{color:var(--muted)}
-.life .nb{color:var(--deep)}
-
-/* Skills */
-.bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.card{background:var(--card);border-radius:var(--r);padding:26px;border:1px solid var(--line);grid-column:span 2;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(10,26,33,.08)}
-.card.w{grid-column:span 3}
-.card h3{margin:0 0 8px;font-size:1.05rem;color:var(--brand)}
-.card p{margin:0;color:var(--muted);font-size:.95rem}
-.card.hl{background:var(--brand);border-color:var(--brand)}
-.card.hl h3,.card.hl p{color:#fff}
-.edu{display:flex;flex-wrap:wrap;gap:6px 32px;margin-top:32px;color:var(--muted)}
-.edu b{color:var(--ink)}
-.contact{text-align:center;padding:96px 0;background:linear-gradient(160deg,var(--deep),#0b3340)}
-.contact p{max-width:52ch;margin:0 auto 28px;color:var(--soft)}
-footer{text-align:center;color:var(--muted);padding:0 0 36px;font-size:.85rem}
-dialog{border:0;padding:0;background:none;max-width:94vw;max-height:94vh}
-dialog::backdrop{background:rgba(0,0,0,.82)}
-dialog img{max-width:94vw;max-height:90vh;border-radius:12px}
-
-@media(max-width:800px){
- .hero .wrap,.proj,.facts{grid-template-columns:1fr}
- .proj{padding:14px;gap:18px}.proj .info{padding:0 6px 8px}
- .life .slide{flex-basis:86%}
- .bento{grid-template-columns:1fr}.card,.card.w{grid-column:auto}
- .hero{padding:48px 0}section{padding:60px 0}.dark{border-radius:24px;margin:0 8px}
- .nb{width:40px;height:40px}
-}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}h1{animation:none}.btn,.card,.dot{transition:none}}
-</style>
 </head>
+
 <body>
 
-<nav aria-label="Điều hướng">
-  <b>Gia Yến</b>
-  <a href="#du-an">Dự án</a><a href="#kinh-nghiem">Kinh nghiệm</a><a href="#hoat-dong">Hoạt động</a><a href="#ky-nang">Kỹ năng</a><a href="#lien-he">Liên hệ</a>
+<nav aria-label="Điều hướng"> <b>Gia Yến</b>
+
+<div class="lang-switch" aria-label="Language"> <button type="button" data-lang="vi" class="active">VI</button> <span>|</span> <button type="button" data-lang="en">EN</button> </div>
+
+<a href="#du-an" data-i18n="navProjects">Dự án</a>
+<a href="#kinh-nghiem" data-i18n="navExperience">Kinh nghiệm</a>
+<a href="#hoat-dong" data-i18n="navActivities">Hoạt động</a>
+<a href="#ky-nang" data-i18n="navSkills">Kỹ năng</a>
+<a href="#lien-he" data-i18n="navContact">Liên hệ</a>
+
 </nav>
 
-<header class="hero"><div class="wrap">
-  <div>
-    <p class="role">Sinh viên Kỹ thuật Phần mềm, FPT University</p>
-    <h1>Đinh Danh<br>Gia Yến</h1>
-    <p class="lead">Tôi tham gia được cả vòng đời của một sản phẩm phần mềm: phân tích yêu cầu và viết tài liệu, lập trình Backend/Frontend, rồi kiểm thử để sản phẩm chạy đúng như mong đợi. Tôi đang tìm cơ hội thực tập hoặc làm việc ở vị trí Developer, Business Analyst, Tester hoặc các vị trí khác có liên quan đến công nghệ.</p>
-    <div class="btns">
-      <a class="btn main" href="#du-an">Xem dự án</a>
-      <a class="btn ghost" href="#lien-he">Liên hệ</a>
-    </div>
-    <ul class="chips" aria-label="Thế mạnh"><li>Phân tích yêu cầu</li><li>Backend và API</li><li>Kiểm thử</li><li>SQL</li></ul>
-  </div>
-  <div class="portrait"><img src="images/avatar.jpg" alt="Chân dung Đinh Danh Gia Yến"></div>
-</div></header>
+<header class="hero"> <div class="wrap">
 
-<section class="dark" id="du-an"><div class="wrap">
-  <span class="eyebrow">Dự án nổi bật</span>
-  <h2>Hệ thống Hỗ trợ Phòng khám Chuyên khoa Mắt</h2>
-  <p class="intro">Nền tảng số hóa quy trình nhãn khoa, từ bệnh nhân đặt lịch đến bác sĩ hoàn tất ca khám. Tôi tham gia với vai trò Software Developer (06/2026 - 09/2026).</p>
-  <div class="facts">
-    <div class="fact"><b>Phân tích</b><span>Quy trình nghiệp vụ, SRS, User Guide</span></div>
-    <div class="fact"><b>Phát triển</b><span>ASP.NET Core Web API, Next.js/React, mobile app</span></div>
-    <div class="fact"><b>Kiểm thử</b><span>Functional testing, kiểm tra dữ liệu SQL Server</span></div>
-  </div>
+<div>
+  <p
+    class="role"
+    data-i18n="heroRole">
+    Sinh viên Kỹ thuật Phần mềm, FPT University
+  </p>
 
-  <div class="slider" data-slider>
-    <div class="track" tabindex="0" aria-label="Các màn hình của dự án">
-      <article class="slide proj"><button class="pic"><img src="images/du-an-1.jpg" alt="Trang chủ Eye Clinic Support" loading="lazy"></button><div class="info"><span class="tag">Tổng quan</span><h3>Trang chủ Eye Clinic Support</h3><p>Điểm bắt đầu của hệ thống, giúp bệnh nhân nắm nhanh dịch vụ và đặt lịch khám.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-2.jpg" alt="Hồ sơ phòng khám" loading="lazy"></button><div class="info"><span class="tag">Tổng quan</span><h3>Quản lý hồ sơ phòng khám</h3><p>Nơi lưu và cập nhật thông tin hồ sơ, tập trung dữ liệu để các vai trò cùng sử dụng.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-3.jpg" alt="Màn hình bệnh nhân đặt lịch khám" loading="lazy"></button><div class="info"><span class="tag">Bước 1</span><h3>Bệnh nhân đặt lịch</h3><p>Chọn hồ sơ, bác sĩ, dịch vụ, ngày và khung giờ. Thông tin lịch hẹn hiển thị bên cạnh để kiểm tra trước khi xác nhận.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-4.jpg" alt="Màn hình lễ tân quản lý lịch hẹn" loading="lazy"></button><div class="info"><span class="tag">Bước 2</span><h3>Lễ tân tiếp nhận</h3><p>Theo dõi lịch hẹn trong ngày, thu tiền cọc tại quầy, check-in và cấp số thứ tự cho bệnh nhân.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-5.jpg" alt="Chi tiết tiếp nhận bệnh nhân" loading="lazy"></button><div class="info"><span class="tag">Bước 2</span><h3>Chi tiết tiếp nhận tại quầy</h3><p>Ghi nhận triệu chứng và thông tin bệnh nhân ngay lúc tiếp nhận để bác sĩ có sẵn dữ liệu.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-6.jpg" alt="Quy trình khám EMR 6 bước" loading="lazy"></button><div class="info"><span class="tag">Bước 3</span><h3>Bác sĩ khám theo quy trình 6 bước</h3><p>Quy trình EMR có bước bắt buộc và tùy chọn, kèm gợi ý từ AI, giúp ca khám không bị bỏ sót bước quan trọng.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/du-an-7.jpg" alt="Hộp thoại kiểm tra hoàn tất khám" loading="lazy"></button><div class="info"><span class="tag">Bước 4</span><h3>Kiểm tra và hoàn tất ca khám</h3><p>Hệ thống đối chiếu danh sách việc cần làm (tóm tắt chẩn đoán, kê đơn) rồi mới cho phép xác nhận hoàn tất.</p></div></article>
-      <article class="slide proj"><button class="pic"><img src="images/bao-ve-do-an.png" alt="Nhóm đồ án chụp ảnh cùng hội đồng sau buổi bảo vệ" loading="lazy" style="object-fit:cover"></button><div class="info"><span class="tag">Hoàn thành</span><h3>Bảo vệ đồ án tốt nghiệp</h3><p>Buổi bảo vệ đồ án Eye Clinic Support System tại FPT University cùng nhóm và hội đồng.</p></div></article>
-    </div>
-    <div class="ctrl"><button class="nb prev" aria-label="Trước">&larr;</button><div class="dots"></div><span class="count"></span><button class="nb next" aria-label="Sau">&rarr;</button></div>
+  <h1>Đinh Danh<br>Gia Yến</h1>
+
+  <p
+    class="lead"
+    data-i18n="heroLead">
+    Tôi tham gia được cả vòng đời của một sản phẩm phần mềm: phân tích yêu cầu và viết tài liệu, lập trình Backend/Frontend, rồi kiểm thử để sản phẩm chạy đúng như mong đợi. Tôi đang tìm cơ hội thực tập hoặc làm việc ở vị trí Developer, Business Analyst, Tester hoặc các vị trí khác có liên quan đến công nghệ.
+  </p>
+
+  <div class="btns">
+    <a
+      class="btn main"
+      href="#du-an"
+      data-i18n="viewProjects">
+      Xem dự án
+    </a>
+
+    <a
+      class="btn ghost"
+      href="#lien-he"
+      data-i18n="contact">
+      Liên hệ
+    </a>
   </div>
 
-  <ul class="tags" aria-label="Công nghệ"><li>ASP.NET Core Web API</li><li>C#</li><li>Next.js</li><li>React</li><li>REST API</li><li>SQL Server</li><li>Git</li><li>SourceTree</li></ul>
-</div></section>
+  <ul class="chips" aria-label="Thế mạnh">
+    <li data-i18n="chipRequirements">Phân tích yêu cầu</li>
+    <li data-i18n="chipBackend">Backend và API</li>
+    <li data-i18n="chipTesting">Kiểm thử</li>
+    <li>SQL</li>
+  </ul>
+</div>
 
-<section id="kinh-nghiem"><div class="wrap">
-  <span class="eyebrow">Kinh nghiệm</span>
-  <h2>Kinh nghiệm làm việc</h2>
-  <p class="intro">Nơi tôi lần đầu làm việc với quy trình phát triển phần mềm thực tế.</p>
-  <div class="job">
-    <small>04/2025 - 07/2025</small>
-    <h3>Thực tập sinh Lập trình</h3>
-    <p class="sub">Công ty TNHH Phần mềm BIWOCO</p>
-    <ul>
-      <li>Thực hành Backend với .NET, REST API và SQL dưới sự hướng dẫn của mentor.</li>
-      <li>Viết test case, thực hiện Manual và Functional Testing, ghi nhận kết quả.</li>
-      <li>Kiểm thử REST API bằng Postman, phân tích và báo cáo bug cho team.</li>
-      <li>Dùng Git để quản lý source code và làm việc nhóm.</li>
-    </ul>
+<div class="portrait">
+  <img
+    src="images/avatar.jpg"
+    alt="Chân dung Đinh Danh Gia Yến"
+    data-i18n-alt="avatarAlt">
+</div>
+
+</div> </header>
+
+<section class="dark" id="du-an"> <div class="wrap">
+
+<span
+  class="eyebrow"
+  data-i18n="featuredProject">
+  Dự án nổi bật
+</span>
+
+<h2 data-i18n="projectTitle">
+  Hệ thống Hỗ trợ Phòng khám Chuyên khoa Mắt
+</h2>
+
+<p
+  class="intro"
+  data-i18n="projectIntro">
+  Nền tảng số hóa quy trình nhãn khoa, từ bệnh nhân đặt lịch đến bác sĩ hoàn tất ca khám. Tôi tham gia với vai trò Software Developer (06/2026 - 09/2026).
+</p>
+
+<div class="facts">
+
+  <div class="fact">
+    <b data-i18n="factAnalysis">Phân tích</b>
+    <span data-i18n="factAnalysisDesc">
+      Quy trình nghiệp vụ, SRS, User Guide
+    </span>
   </div>
-</div></section>
 
-<section id="hoat-dong" style="padding-top:0"><div class="wrap">
-  <span class="eyebrow">Hoạt động</span>
-  <h2>Ngoài giờ code</h2>
-  <p class="intro">Âm nhạc và hoạt động cộng đồng dạy tôi cách làm việc nhóm, chia việc và giữ tiến độ.</p>
-  <div class="slider life" data-slider>
-    <div class="track" tabindex="0" aria-label="Hoạt động ngoài giờ">
-      <figure class="slide"><img src="images/hoat-dong-2.jpg" alt="Các thành viên CLB Nhạc cụ dân tộc FTC" loading="lazy"><figcaption>CLB Nhạc cụ dân tộc FTC, Đại học FPT Cần Thơ (01/2023 - 08/2023)</figcaption></figure>
-      <figure class="slide"><img src="images/hoat-dong-1.jpg" alt="Buổi biểu diễn của CLB" loading="lazy"><figcaption>Biểu diễn cùng CLB</figcaption></figure>
-      <figure class="slide"><img src="images/hoat-dong-3.jpg" alt="Đàn tranh tại buổi tập" loading="lazy"><figcaption>Chuẩn bị tiết mục và giữ tiến độ luyện tập</figcaption></figure>
-      <figure class="slide"><img src="images/hoat-dong-4.jpg" alt="Hoạt động vui chơi cùng các em nhỏ" loading="lazy"><figcaption>Cội Nguồn Yêu Thương (01/2024 - 02/2024): khởi xướng và tổ chức hoạt động cho các em nhỏ có hoàn cảnh đặc biệt</figcaption></figure>
-    </div>
-    <div class="ctrl"><button class="nb prev" aria-label="Trước">&larr;</button><div class="dots"></div><span class="count"></span><button class="nb next" aria-label="Sau">&rarr;</button></div>
+  <div class="fact">
+    <b data-i18n="factDevelopment">Phát triển</b>
+    <span data-i18n="factDevelopmentDesc">
+      ASP.NET Core Web API, Next.js/React, mobile app
+    </span>
   </div>
-</div></section>
 
-<section id="ky-nang" style="padding-top:0"><div class="wrap">
-  <span class="eyebrow">Kỹ năng</span>
-  <h2>Kỹ năng</h2>
-  <div class="bento" style="margin-top:32px">
-    <div class="card hl w"><h3>Backend và API</h3><p>C#, ASP.NET Core Web API, REST API, JSON, Postman</p></div>
-    <div class="card w"><h3>Phân tích và tài liệu</h3><p>Phân tích yêu cầu, SRS, Hướng dẫn sử dụng (User Guide)</p></div>
-    <div class="card"><h3>Cơ sở dữ liệu</h3><p>SQL, SQL Server</p></div>
-    <div class="card"><h3>Frontend</h3><p>React, Next.js, HTML, CSS</p></div>
-    <div class="card"><h3>Kiểm thử và công cụ</h3><p>Kiểm thử thủ công, chức năng, API, báo cáo lỗi, Git, SourceTree</p></div>
-    <div class="card w"><h3>Văn phòng</h3><p>Word, Excel, Canva</p></div>
-    <div class="card w"><h3>Tiếng Anh</h3><p>Đọc hiểu tài liệu chuyên ngành, giao tiếp cơ bản</p></div>
+  <div class="fact">
+    <b data-i18n="factTesting">Kiểm thử</b>
+    <span data-i18n="factTestingDesc">
+      Functional testing, kiểm tra dữ liệu SQL Server
+    </span>
   </div>
-  <div class="edu">
-    <span><b>FPT University</b>, Kỹ thuật Phần mềm (2022 - 2026)</span>
-    <span>Sinh viên Giỏi: Summer 2024, Spring 2026</span>
+
+</div>
+
+<div class="slider" data-slider>
+
+  <div
+    class="track"
+    tabindex="0"
+    aria-label="Các màn hình của dự án"
+    data-i18n-aria="projectScreens">
+
+    <!-- Project 1 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-1.jpg"
+          alt="Trang chủ Eye Clinic Support"
+          data-i18n-alt="project1Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="overview">Tổng quan</span>
+
+        <h3 data-i18n="project1Title">
+          Trang chủ Eye Clinic Support
+        </h3>
+
+        <p data-i18n="project1Desc">
+          Điểm bắt đầu của hệ thống, giúp bệnh nhân nắm nhanh dịch vụ và đặt lịch khám.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 2 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-2.jpg"
+          alt="Hồ sơ phòng khám"
+          data-i18n-alt="project2Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="overview">Tổng quan</span>
+
+        <h3 data-i18n="project2Title">
+          Quản lý hồ sơ phòng khám
+        </h3>
+
+        <p data-i18n="project2Desc">
+          Nơi lưu và cập nhật thông tin hồ sơ, tập trung dữ liệu để các vai trò cùng sử dụng.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 3 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-3.jpg"
+          alt="Màn hình bệnh nhân đặt lịch khám"
+          data-i18n-alt="project3Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="step1">Bước 1</span>
+
+        <h3 data-i18n="project3Title">
+          Bệnh nhân đặt lịch
+        </h3>
+
+        <p data-i18n="project3Desc">
+          Chọn hồ sơ, bác sĩ, dịch vụ, ngày và khung giờ. Thông tin lịch hẹn hiển thị bên cạnh để kiểm tra trước khi xác nhận.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 4 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-4.jpg"
+          alt="Màn hình lễ tân quản lý lịch hẹn"
+          data-i18n-alt="project4Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="step2">Bước 2</span>
+
+        <h3 data-i18n="project4Title">
+          Lễ tân tiếp nhận
+        </h3>
+
+        <p data-i18n="project4Desc">
+          Theo dõi lịch hẹn trong ngày, thu tiền cọc tại quầy, check-in và cấp số thứ tự cho bệnh nhân.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 5 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-5.jpg"
+          alt="Chi tiết tiếp nhận bệnh nhân"
+          data-i18n-alt="project5Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="step2">Bước 2</span>
+
+        <h3 data-i18n="project5Title">
+          Chi tiết tiếp nhận tại quầy
+        </h3>
+
+        <p data-i18n="project5Desc">
+          Ghi nhận triệu chứng và thông tin bệnh nhân ngay lúc tiếp nhận để bác sĩ có sẵn dữ liệu.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 6 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-6.jpg"
+          alt="Quy trình khám EMR 6 bước"
+          data-i18n-alt="project6Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="step3">Bước 3</span>
+
+        <h3 data-i18n="project6Title">
+          Bác sĩ khám theo quy trình 6 bước
+        </h3>
+
+        <p data-i18n="project6Desc">
+          Quy trình EMR có bước bắt buộc và tùy chọn, kèm gợi ý từ AI, giúp ca khám không bị bỏ sót bước quan trọng.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 7 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/du-an-7.jpg"
+          alt="Hộp thoại kiểm tra hoàn tất khám"
+          data-i18n-alt="project7Alt"
+          loading="lazy">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="step4">Bước 4</span>
+
+        <h3 data-i18n="project7Title">
+          Kiểm tra và hoàn tất ca khám
+        </h3>
+
+        <p data-i18n="project7Desc">
+          Hệ thống đối chiếu danh sách việc cần làm (tóm tắt chẩn đoán, kê đơn) rồi mới cho phép xác nhận hoàn tất.
+        </p>
+      </div>
+
+    </article>
+
+    <!-- Project 8 -->
+    <article class="slide proj">
+
+      <button class="pic">
+        <img
+          src="images/bao-ve-do-an.png"
+          alt="Nhóm đồ án chụp ảnh cùng hội đồng sau buổi bảo vệ"
+          data-i18n-alt="project8Alt"
+          loading="lazy"
+          style="object-fit:cover">
+      </button>
+
+      <div class="info">
+        <span class="tag" data-i18n="completed">Hoàn thành</span>
+
+        <h3 data-i18n="project8Title">
+          Bảo vệ đồ án tốt nghiệp
+        </h3>
+
+        <p data-i18n="project8Desc">
+          Buổi bảo vệ đồ án Eye Clinic Support System tại FPT University cùng nhóm và hội đồng.
+        </p>
+      </div>
+
+    </article>
+
   </div>
-</div></section>
 
-<section class="contact dark" id="lien-he" style="margin-bottom:12px"><div class="wrap">
-  <span class="eyebrow">Liên hệ</span>
-  <h2>Cùng trao đổi nhé</h2>
-  <p>Nếu bạn đang tìm một bạn trẻ cho vị trí lập trình, phân tích nghiệp vụ, kiểm thử phần mềm hoặc các vị trí khác liên quan đến công nghệ, hãy gửi email cho tôi nhé.</p>
-  <div class="btns" style="justify-content:center">
-    <a class="btn main" href="mailto:yyeenn444@gmail.com">yyeenn444@gmail.com</a>
+  <div class="ctrl">
+    <button
+      class="nb prev"
+      aria-label="Trước"
+      data-i18n-aria="previous">
+      &larr;
+    </button>
+
+    <div class="dots"></div>
+
+    <span class="count"></span>
+
+    <button
+      class="nb next"
+      aria-label="Sau"
+      data-i18n-aria="next">
+      &rarr;
+    </button>
   </div>
-  <p style="margin:24px 0 0">Cần Thơ, Việt Nam &nbsp;|&nbsp; <a style="color:#fff" href="https://github.com/DDGiaYen">GitHub</a></p>
-</div></section>
-<footer>© 2026 Đinh Danh Gia Yến</footer>
 
-<dialog id="zoom"><img alt=""></dialog>
-<script>
-const d=document.getElementById('zoom'),big=d.querySelector('img');
-document.querySelectorAll('.slide img').forEach(i=>i.addEventListener('click',()=>{big.src=i.src;big.alt=i.alt;d.showModal()}));
-d.addEventListener('click',()=>d.close());
+</div>
 
-document.querySelectorAll('[data-slider]').forEach(s=>{
-  const t=s.querySelector('.track'),sl=[...t.children],dots=s.querySelector('.dots'),
-        pv=s.querySelector('.prev'),nx=s.querySelector('.next'),ct=s.querySelector('.count');
-  const step=()=>sl[0].offsetWidth+(parseFloat(getComputedStyle(t).columnGap)||20);
-  sl.forEach((_,i)=>{const b=document.createElement('button');b.className='dot';b.setAttribute('aria-label','Mục '+(i+1));
-    b.onclick=()=>t.scrollTo({left:i*step(),behavior:'smooth'});dots.appendChild(b)});
-  function upd(){
-    const end=t.scrollLeft+t.clientWidth>=t.scrollWidth-4;
-    const i=end?sl.length-1:Math.round(t.scrollLeft/step());
-    [...dots.children].forEach((b,k)=>b.classList.toggle('on',k===i));
-    ct.textContent=(i+1)+' / '+sl.length;
-    pv.disabled=t.scrollLeft<4;nx.disabled=end;
-  }
-  pv.onclick=()=>t.scrollBy({left:-step(),behavior:'smooth'});
-  nx.onclick=()=>t.scrollBy({left:step(),behavior:'smooth'});
-  t.addEventListener('scroll',()=>requestAnimationFrame(upd),{passive:true});
-  t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();nx.click()}if(e.key==='ArrowLeft'){e.preventDefault();pv.click()}});
-  addEventListener('resize',upd);upd();
-});
-</script>
-</body>
-</html>
+<ul class="tags" aria-label="Công nghệ">
+  <li>ASP.NET Core Web API</li>
+  <li>C#</li>
+  <li>Next.js</li>
+  <li>React</li>
+  <li>REST API</li>
+  <li>SQL Server</li>
+  <li>Git</li>
+  <li>SourceTree</li>
+</ul>
+
+</div> </section>
+
+<section id="kinh-nghiem"> <div class="wrap">
+
+<span class="eyebrow" data-i18n="experienceEyebrow">
+  Kinh nghiệm
+</span>
+
+<h2 data-i18n="experienceTitle">
+  Kinh nghiệm làm việc
+</h2>
+
+<p
+  class="intro"
+  data-i18n="experienceIntro">
+  Nơi tôi lần đầu làm việc với quy trình phát triển phần mềm thực tế.
+</p>
+
+<div class="job">
+
+  <small>04/2025 - 07/2025</small>
+
+  <h3 data-i18n="jobTitle">
+    Thực tập sinh Lập trình
+  </h3>
+
+  <p
+    class="sub"
+    data-i18n="companyName">
+    Công ty TNHH Phần mềm BIWOCO
+  </p>
+
+  <ul>
+    <li data-i18n="job1">
+      Thực hành Backend với .NET, REST API và SQL dưới sự hướng dẫn của mentor.
+    </li>
+
+    <li data-i18n="job2">
+      Viết test case, thực hiện Manual và Functional Testing, ghi nhận kết quả.
+    </li>
+
+    <li data-i18n="job3">
+      Kiểm thử REST API bằng Postman, phân tích và báo cáo bug cho team.
+    </li>
+
+    <li data-i18n="job4">
+      Dùng Git để quản lý source code và làm việc nhóm.
+    </li>
+  </ul>
+
+</div>
+
+</div> </section>
+
+<section id="hoat-dong" style="padding-top:0">
+
+<div class="wrap">
+
+<span class="eyebrow" data-i18n="activitiesEyebrow">
+  Hoạt động
+</span>
+
+<h2 data-i18n="activitiesTitle">
+  Ngoài giờ code
+</h2>
+
+<p
+  class="intro"
+  data-i18n="activitiesIntro">
+  Âm nhạc và hoạt động cộng đồng dạy tôi cách làm việc nhóm, chia việc và giữ tiến độ.
+</p>
+
+<div class="slider life" data-slider>
+
+  <div
+    class="track"
+    tabindex="0"
+    aria-label="Hoạt động ngoài giờ"
+    data-i18n-aria="activitiesSlider">
+
+    <figure class="slide">
+      <img
+        src="images/hoat-dong-2.jpg"
+        alt="Các thành viên CLB Nhạc cụ dân tộc FTC"
+        data-i18n-alt="activity1Alt"
+        loading="lazy">
+
+      <figcaption data-i18n="activity1">
+        CLB Nhạc cụ dân tộc FTC, Đại học FPT Cần Thơ (01/2023 - 08/2023)
+      </figcaption>
+    </figure>
+
+    <figure class="slide">
+      <img
+        src="images/hoat-dong-1.jpg"
+        alt="Buổi biểu diễn của CLB"
+        data-i18n-alt="activity2Alt"
+        loading="lazy">
+
+      <figcaption data-i18n="activity2">
+        Biểu diễn cùng CLB
+      </figcaption>
+    </figure>
+
+    <figure class="slide">
+      <img
+        src="images/hoat-dong-3.jpg"
+        alt="Đàn tranh tại buổi tập"
+        data-i18n-alt="activity3Alt"
+        loading="lazy">
+
+      <figcaption data-i18n="activity3">
+        Chuẩn bị tiết mục và giữ tiến độ luyện tập
+      </figcaption>
+    </figure>
+
+    <figure class="slide">
+      <img
+        src="images/hoat-dong-4.jpg"
+        alt="Hoạt động vui chơi cùng các em nhỏ"
+        data-i18n-alt="activity4Alt"
+        loading="lazy">
+
+      <figcaption data-i18n="activity4">
+        Cội Nguồn Yêu Thương (01/2024 - 02/2024): khởi xướng và tổ chức hoạt động cho các em nhỏ có hoàn cảnh đặc biệt
+      </figcaption>
+    </figure>
+
+  </div>
+
+  <div class="ctrl">
+
+    <button
+      class="nb prev"
+      aria-label="Trước"
+      data-i18n-aria="previous">
+      &larr;
+    </button>
+
+    <div class="dots"></div>
+
+    <span class="count"></span>
+
+    <button
+      class="nb next"
+      aria-label="Sau"
+      data-i18n-aria="next">
+      &rarr;
+    </button>
+
+  </div>
+
+</div>
+
+</div> </section>
+
+<section id="ky-nang" style="padding-top:0">
+
+<div class="wrap">
+
+<span class="eyebrow" data-i18n="skillsEyebrow">
+  Kỹ năng
+</span>
+
+<h2 data-i18n="skillsTitle">
+  Kỹ năng
+</h2>
+
+<div
+  class="bento"
+  style="margin-top:32px">
+
+  <div class="card hl w">
+    <h3 data-i18n="skillBackendTitle">
+      Backend và API
+    </h3>
+
+    <p>
+      C#, ASP.NET Core Web API, REST API, JSON, Postman
+    </p>
+  </div>
+
+  <div class="card w">
+    <h3 data-i18n="skillAnalysisTitle">
+      Phân tích và tài liệu
+    </h3>
+
+    <p data-i18n="skillAnalysisDesc">
+      Phân tích yêu cầu, SRS, Hướng dẫn sử dụng (User Guide)
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="skillDatabaseTitle">
+      Cơ sở dữ liệu
+    </h3>
+
+    <p>
+      SQL, SQL Server
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="skillFrontendTitle">
+      Frontend
+    </h3>
+
+    <p>
+      React, Next.js, HTML, CSS
+    </p>
+  </div>
+
+  <div class="card">
+    <h3 data-i18n="skillTestingTitle">
+      Kiểm thử và công cụ
+    </h3>
+
+    <p data-i18n="skillTestingDesc">
+      Kiểm thử thủ công, chức năng, API, báo cáo lỗi, Git, SourceTree
+    </p>
+  </div>
+
+  <div class="card w">
+    <h3 data-i18n="skillOfficeTitle">
+      Văn phòng
+    </h3>
+
+    <p>
+      Word, Excel, Canva
+    </p>
+  </div>
+
+  <div class="card w">
+    <h3 data-i18n="skillEnglishTitle">
+      Tiếng Anh
+    </h3>
+
+    <p data-i18n="skillEnglishDesc">
+      Đọc hiểu tài liệu chuyên ngành, giao tiếp cơ bản
+    </p>
+  </div>
+
+</div>
+
+<div class="edu">
+
+  <span>
+    <b>FPT University</b>,
+    <span data-i18n="educationMajor">Kỹ thuật Phần mềm</span>
+    (2022 - 2026)
+  </span>
+
+  <span data-i18n="academicAchievement">
+    Sinh viên Giỏi: Summer 2024, Spring 2026
+  </span>
+
+</div>
+
+</div> </section>
+
+<section class="contact dark" id="lien-he" style="margin-bottom:12px">
+
+<div class="wrap">
+
+<span
+  class="eyebrow"
+  data-i18n="contactEyebrow">
+  Liên hệ
+</span>
+
+<h2 data-i18n="contactTitle">
+  Cùng trao đổi nhé
+</h2>
+
+<p data-i18n="contactDesc">
+  Nếu bạn đang tìm một bạn trẻ cho vị trí lập trình, phân tích nghiệp vụ, kiểm thử phần mềm hoặc các vị trí khác liên quan đến công nghệ, hãy gửi email cho tôi nhé.
+</p>
+
+<div
+  class="btns"
+  style="justify-content:center">
+
+  <a
+    class="btn main"
+    href="mailto:yyeenn444@gmail.com">
+    yyeenn444@gmail.com
+  </a>
+
+</div>
+
+<p style="margin:24px 0 0">
+
+  <span data-i18n="location">
+    Cần Thơ, Việt Nam
+  </span>
+
+  &nbsp;|&nbsp;
+
+  <a
+    style="color:#fff"
+    href="https://github.com/DDGiaYen">
+    GitHub
+  </a>
+
+</p>
+
+</div> </section>
+
+<footer> © 2026 Đinh Danh Gia Yến </footer>
+
+<dialog id="zoom"> <img alt=""> </dialog>
+
+<script> /* ========================================================= TRANSLATIONS ========================================================= */ const translations = { vi: { navProjects: "Dự án", navExperience: "Kinh nghiệm", navActivities: "Hoạt động", navSkills: "Kỹ năng", navContact: "Liên hệ", heroRole: "Sinh viên Kỹ thuật Phần mềm, FPT University", heroLead: "Tôi tham gia được cả vòng đời của một sản phẩm phần mềm: phân tích yêu cầu và viết tài liệu, lập trình Backend/Frontend, rồi kiểm thử để sản phẩm chạy đúng như mong đợi. Tôi đang tìm cơ hội thực tập hoặc làm việc ở vị trí Developer, Business Analyst, Tester hoặc các vị trí khác có liên quan đến công nghệ.", viewProjects: "Xem dự án", contact: "Liên hệ", chipRequirements: "Phân tích yêu cầu", chipBackend: "Backend và API", chipTesting: "Kiểm thử", featuredProject: "Dự án nổi bật", projectTitle: "Hệ thống Hỗ trợ Phòng khám Chuyên khoa Mắt", projectIntro: "Nền tảng số hóa quy trình nhãn khoa, từ bệnh nhân đặt lịch đến bác sĩ hoàn tất ca khám. Tôi tham gia với vai trò Software Developer (06/2026 - 09/2026).", factAnalysis: "Phân tích", factAnalysisDesc: "Quy trình nghiệp vụ, SRS, User Guide", factDevelopment: "Phát triển", factDevelopmentDesc: "ASP.NET Core Web API, Next.js/React, mobile app", factTesting: "Kiểm thử", factTestingDesc: "Functional testing, kiểm tra dữ liệu SQL Server", overview: "Tổng quan", step1: "Bước 1", step2: "Bước 2", step3: "Bước 3", step4: "Bước 4", completed: "Hoàn thành", project1Title: "Trang chủ Eye Clinic Support", project1Desc: "Điểm bắt đầu của hệ thống, giúp bệnh nhân nắm nhanh dịch vụ và đặt lịch khám.", project2Title: "Quản lý hồ sơ phòng khám", project2Desc: "Nơi lưu và cập nhật thông tin hồ sơ, tập trung dữ liệu để các vai trò cùng sử dụng.", project3Title: "Bệnh nhân đặt lịch", project3Desc: "Chọn hồ sơ, bác sĩ, dịch vụ, ngày và khung giờ. Thông tin lịch hẹn hiển thị bên cạnh để kiểm tra trước khi xác nhận.", project4Title: "Lễ tân tiếp nhận", project4Desc: "Theo dõi lịch hẹn trong ngày, thu tiền cọc tại quầy, check-in và cấp số thứ tự cho bệnh nhân.", project5Title: "Chi tiết tiếp nhận tại quầy", project5Desc: "Ghi nhận triệu chứng và thông tin bệnh nhân ngay lúc tiếp nhận để bác sĩ có sẵn dữ liệu.", project6Title: "Bác sĩ khám theo quy trình 6 bước", project6Desc: "Quy trình EMR có bước bắt buộc và tùy chọn, kèm gợi ý từ AI, giúp ca khám không bị bỏ sót bước quan trọng.", project7Title: "Kiểm tra và hoàn tất ca khám", project7Desc: "Hệ thống đối chiếu danh sách việc cần làm (tóm tắt chẩn đoán, kê đơn) rồi mới cho phép xác nhận hoàn tất.", project8Title: "Bảo vệ đồ án tốt nghiệp", project8Desc: "Buổi bảo vệ đồ án Eye Clinic Support System tại FPT University cùng nhóm và hội đồng.", experienceEyebrow: "Kinh nghiệm", experienceTitle: "Kinh nghiệm làm việc", experienceIntro: "Nơi tôi lần đầu làm việc với quy trình phát triển phần mềm thực tế.", jobTitle: "Thực tập sinh Lập trình", companyName: "Công ty TNHH Phần mềm BIWOCO", job1: "Thực hành Backend với .NET, REST API và SQL dưới sự hướng dẫn của mentor.", job2: "Viết test case, thực hiện Manual và Functional Testing, ghi nhận kết quả.", job3: "Kiểm thử REST API bằng Postman, phân tích và báo cáo bug cho team.", job4: "Dùng Git để quản lý source code và làm việc nhóm.", activitiesEyebrow: "Hoạt động", activitiesTitle: "Ngoài giờ code", activitiesIntro: "Âm nhạc và hoạt động cộng đồng dạy tôi cách làm việc nhóm, chia việc và giữ tiến độ.", activity1: "CLB Nhạc cụ dân tộc FTC, Đại học FPT Cần Thơ (01/2023 - 08/2023)", activity2: "Biểu diễn cùng CLB", activity3: "Chuẩn bị tiết mục và giữ tiến độ luyện tập", activity4: "Cội Nguồn Yêu Thương (01/2024 - 02/2024): khởi xướng và tổ chức hoạt động cho các em nhỏ có hoàn cảnh đặc biệt", skillsEyebrow: "Kỹ năng", skillsTitle: "Kỹ năng", skillBackendTitle: "Backend và API", skillAnalysisTitle: "Phân tích và tài liệu", skillAnalysisDesc: "Phân tích yêu cầu, SRS, Hướng dẫn sử dụng (User Guide)", skillDatabaseTitle: "Cơ sở dữ liệu", skillFrontendTitle: "Frontend", skillTestingTitle: "Kiểm thử và công cụ", skillTestingDesc: "Kiểm thử thủ công, chức năng, API, báo cáo lỗi, Git, SourceTree", skillOfficeTitle: "Văn phòng", skillEnglishTitle: "Tiếng Anh", skillEnglishDesc: "Đọc hiểu tài liệu chuyên ngành, giao tiếp cơ bản", educationMajor: "Kỹ thuật Phần mềm", academicAchievement: "Sinh viên Giỏi: Summer 2024, Spring 2026", contactEyebrow: "Liên hệ", contactTitle: "Cùng trao đổi nhé", contactDesc: "Nếu bạn đang tìm một bạn trẻ cho vị trí lập trình, phân tích nghiệp vụ, kiểm thử phần mềm hoặc các vị trí khác liên quan đến công nghệ, hãy gửi email cho tôi nhé.", location: "Cần Thơ, Việt Nam", previous: "Trước", next: "Sau", projectScreens: "Các màn hình của dự án", activitiesSlider: "Hoạt động ngoài giờ", avatarAlt: "Chân dung Đinh Danh Gia Yến", project1Alt: "Trang chủ Eye Clinic Support", project2Alt: "Hồ sơ phòng khám", project3Alt: "Màn hình bệnh nhân đặt lịch khám", project4Alt: "Màn hình lễ tân quản lý lịch hẹn", project5Alt: "Chi tiết tiếp nhận bệnh nhân", project6Alt: "Quy trình khám EMR 6 bước", project7Alt: "Hộp thoại kiểm tra hoàn tất khám", project8Alt: "Nhóm đồ án chụp ảnh cùng hội đồng sau buổi bảo vệ", activity1Alt: "Các thành viên CLB Nhạc cụ dân tộc FTC", activity2Alt: "Buổi biểu diễn của CLB", activity3Alt: "Đàn tranh tại buổi tập", activity4Alt: "Hoạt động vui chơi cùng các em nhỏ" }, en: { navProjects: "Projects", navExperience: "Experience", navActivities: "Activities", navSkills: "Skills", navContact: "Contact", heroRole: "Software Engineering Student, FPT University", heroLead: "I have experience across different stages of the software development lifecycle, including requirements analysis and documentation, Backend/Frontend development, and software testing. I am looking for an internship or entry-level opportunity as a Developer, Business Analyst, Tester, or in another technology-related role.", viewProjects: "View Projects", contact: "Contact Me", chipRequirements: "Requirements Analysis", chipBackend: "Backend & API", chipTesting: "Software Testing", featuredProject: "Featured Project", projectTitle: "Eye Clinic Support System", projectIntro: "A digital platform that supports the ophthalmology workflow, from patient appointment booking to examination completion. I contributed to the project as a Software Developer (06/2026 - 09/2026).", factAnalysis: "Analysis", factAnalysisDesc: "Business workflows, SRS, User Guide", factDevelopment: "Development", factDevelopmentDesc: "ASP.NET Core Web API, Next.js/React, mobile app", factTesting: "Testing", factTestingDesc: "Functional testing, SQL Server data validation", overview: "Overview", step1: "Step 1", step2: "Step 2", step3: "Step 3", step4: "Step 4", completed: "Completed", project1Title: "Eye Clinic Support Homepage", project1Desc: "The starting point of the system, allowing patients to quickly explore available services and book an appointment.", project2Title: "Clinic Profile Management", project2Desc: "A centralized space for storing and updating clinic profile information shared across different roles.", project3Title: "Patient Appointment Booking", project3Desc: "Patients can select their profile, doctor, service, date, and time slot. Appointment details are displayed for review before confirmation.", project4Title: "Receptionist Check-in", project4Desc: "Receptionists can monitor the daily appointment schedule, collect deposits at the counter, check patients in, and assign queue numbers.", project5Title: "Patient Intake at Reception", project5Desc: "Symptoms and patient information are recorded during check-in so that doctors have the necessary data before the examination.", project6Title: "Six-Step Doctor Examination Workflow", project6Desc: "The EMR workflow includes required and optional steps, along with AI-assisted suggestions, helping doctors avoid missing important examination tasks.", project7Title: "Examination Validation & Completion", project7Desc: "The system checks the required tasks, such as diagnosis summary and prescription, before allowing the examination to be completed.", project8Title: "Graduation Project Defense", project8Desc: "The Eye Clinic Support System graduation project defense at FPT University with my team and the evaluation panel.", experienceEyebrow: "Experience", experienceTitle: "Work Experience", experienceIntro: "My first experience working with a real-world software development process.", jobTitle: "Software Development Intern", companyName: "BIWOCO Software Co., Ltd.", job1: "Practiced Backend development with .NET, REST API, and SQL under the guidance of a mentor.", job2: "Wrote test cases and performed Manual and Functional Testing while documenting test results.", job3: "Tested REST APIs with Postman, analyzed issues, and reported bugs to the team.", job4: "Used Git for source code management and team collaboration.", activitiesEyebrow: "Activities", activitiesTitle: "Beyond Coding", activitiesIntro: "Music and community activities have helped me develop teamwork, task coordination, and time-management skills.", activity1: "FTC Traditional Musical Instruments Club, FPT University Can Tho (01/2023 - 08/2023)", activity2: "Performing with the club", activity3: "Preparing performances and maintaining practice schedules", activity4: "Cội Nguồn Yêu Thương (01/2024 - 02/2024): initiated and organized activities for children in difficult circumstances", skillsEyebrow: "Skills", skillsTitle: "Skills", skillBackendTitle: "Backend & API", skillAnalysisTitle: "Requirements & Documentation", skillAnalysisDesc: "Requirements analysis, SRS, User Guides", skillDatabaseTitle: "Database", skillFrontendTitle: "Frontend", skillTestingTitle: "Testing & Tools", skillTestingDesc: "Manual, functional and API testing, bug reporting, Git, SourceTree", skillOfficeTitle: "Office Tools", skillEnglishTitle: "English", skillEnglishDesc: "Technical documentation reading and basic communication", educationMajor: "Software Engineering", academicAchievement: "Excellent Student: Summer 2024, Spring 2026", contactEyebrow: "Contact", contactTitle: "Let's Connect", contactDesc: "If you are looking for a young candidate for a Developer, Business Analyst, Software Tester, or other technology-related role, feel free to reach out by email.", location: "Can Tho, Vietnam", previous: "Previous", next: "Next", projectScreens: "Project screens", activitiesSlider: "Activities outside of coding", avatarAlt: "Portrait of Đinh Danh Gia Yến", project1Alt: "Eye Clinic Support homepage", project2Alt: "Clinic profile management screen", project3Alt: "Patient appointment booking screen", project4Alt: "Receptionist appointment management screen", project5Alt: "Patient intake details screen", project6Alt: "Six-step EMR examination workflow", project7Alt: "Examination completion validation dialog", project8Alt: "Project team with the evaluation panel after the graduation project defense", activity1Alt: "Members of the FTC Traditional Musical Instruments Club", activity2Alt: "Club performance", activity3Alt: "Playing the Vietnamese zither during practice", activity4Alt: "Community activity with children" } }; /* ========================================================= LANGUAGE SWITCHER ========================================================= */ const languageButtons = document.querySelectorAll("[data-lang]"); function setLanguage(lang){ const dictionary = translations[lang]; if(!dictionary){ return; } /* Text content */ document.querySelectorAll("[data-i18n]").forEach(element => { const key = element.dataset.i18n; if(dictionary[key] !== undefined){ element.textContent = dictionary[key]; } }); /* ARIA labels */ document.querySelectorAll("[data-i18n-aria]").forEach(element => { const key = element.dataset.i18nAria; if(dictionary[key] !== undefined){ element.setAttribute("aria-label", dictionary[key]); } }); /* Image alt text */ document.querySelectorAll("[data-i18n-alt]").forEach(element => { const key = element.dataset.i18nAlt; if(dictionary[key] !== undefined){ element.setAttribute("alt", dictionary[key]); } }); /* HTML language */ document.documentElement.lang = lang; /* Page title */ if(lang === "en"){ document.title = "Đinh Danh Gia Yến | Portfolio"; document .querySelector('meta[name="description"]') .setAttribute( "content", "Portfolio of Đinh Danh Gia Yến - Software Engineering student at FPT University with experience in requirements analysis, Backend/Frontend development, and software testing." ); }else{ document.title = "Đinh Danh Gia Yến | Portfolio"; document .querySelector('meta[name="description"]') .setAttribute( "content", "Portfolio của Đinh Danh Gia Yến - sinh viên Kỹ thuật Phần mềm FPT University, thực hành phân tích yêu cầu, lập trình Backend/Frontend và kiểm thử phần mềm." ); } /* Active language button */ languageButtons.forEach(button => { button.classList.toggle( "active", button.dataset.lang === lang ); }); /* Remember language */ localStorage.setItem("portfolio-language", lang); } languageButtons.forEach(button => { button.addEventListener("click", () => { setLanguage(button.dataset.lang); }); }); /* Load saved language */ const savedLanguage = localStorage.getItem("portfolio-language") || "vi"; setLanguage(savedLanguage); /* ========================================================= IMAGE ZOOM ========================================================= */ const d = document.getElementById("zoom"); const big = d.querySelector("img"); document .querySelectorAll(".slide img") .forEach(image => { image.addEventListener("click", () => { big.src = image.src; big.alt = image.alt; d.showModal(); }); }); d.addEventListener("click", () => { d.close(); }); /* ========================================================= SLIDERS ========================================================= */ document .querySelectorAll("[data-slider]") .forEach(slider => { const track = slider.querySelector(".track"); const slides = [...track.children]; const dots = slider.querySelector(".dots"); const previousButton = slider.querySelector(".prev"); const nextButton = slider.querySelector(".next"); const count = slider.querySelector(".count"); const step = () => { return ( slides[0].offsetWidth + (parseFloat( getComputedStyle(track).columnGap ) || 20) ); }; /* Create dots */ slides.forEach((_, index) => { const dot = document.createElement("button"); dot.className = "dot"; dot.setAttribute( "aria-label", "Mục " + (index + 1) ); dot.addEventListener("click", () => { track.scrollTo({ left:index * step(), behavior:"smooth" }); }); dots.appendChild(dot); }); function updateSlider(){ const end = track.scrollLeft + track.clientWidth >= track.scrollWidth - 4; const index = end ? slides.length - 1 : Math.round( track.scrollLeft / step() ); [...dots.children].forEach( (dot, dotIndex) => { dot.classList.toggle( "on", dotIndex === index ); } ); count.textContent = (index + 1) + " / " + slides.length; previousButton.disabled = track.scrollLeft < 4; nextButton.disabled = end; } previousButton.addEventListener( "click", () => { track.scrollBy({ left:-step(), behavior:"smooth" }); } ); nextButton.addEventListener( "click", () => { track.scrollBy({ left:step(), behavior:"smooth" }); } ); track.addEventListener( "scroll", () => requestAnimationFrame(updateSlider), {passive:true} ); track.addEventListener( "keydown", event => { if(event.key === "ArrowRight"){ event.preventDefault(); nextButton.click(); } if(event.key === "ArrowLeft"){ event.preventDefault(); previousButton.click(); } } ); window.addEventListener( "resize", updateSlider ); updateSlider(); }); </script>
+
+</body> </html>
